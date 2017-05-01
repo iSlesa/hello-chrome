@@ -1,0 +1,41 @@
+/*/'EB Garamond', serif;*/
+body{
+    background-color: black;
+    background-image: url('EPUlp9X_OrfoETC.jpg');
+    background-size: cover;
+}
+
+#greeting{
+    color: rgba( 255, 255, 255, 1 );
+    font-family: 'EB Garamond', serif;'EB Garamond', serif;
+    font-size: 90px;
+}
+
+#time{
+    color: rgba( 255, 255, 255, 1 );
+    font-family: 'EB Garamond', serif;
+    font-size: 65px;
+    padding-right: 50px;
+    padding-top: 50px;
+}
+
+#date{
+    color: rgba( 255, 255, 255, 1 );
+    font-family: 'EB Garamond', serif;
+    font-size: 20px;
+    padding-right: 50px;
+}
+
+.parent {
+    height: 100%;
+    width: 100%;
+    display: table;
+}
+
+.wrapper {
+    display: table-cell;
+    height: 100%;
+    width: 100%;
+    vertical-align: middle;
+    padding: 150px;
+}
