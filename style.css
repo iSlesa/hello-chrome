@@ -3,11 +3,97 @@ body{
     background-color: black;
     background-image: url('EPUlp9X_OrfoETC.jpg');
     background-size: cover;
+    color: white;
+}
+
+div{
+	display: block;
+}
+
+#todo{
+	color: white;
+    overflow-y: scroll;
+}
+
+#done{
+	color: white;
+    text-decoration: line-through;
+    overflow-y: scroll;
+}
+
+#textbox{
+	padding: 25px;
+    margin: 10px;
+    position: fixed;
+    width: 300px;
+    bottom: 200px;
+    right: 0px;
+}
+
+input{
+    width: 300px;
+    border: 3;
+    border-style: solid;
+    border-color: rgba(5,5,5,0.1);
+    background-color: rgba(0,0,0,0.3);
+    font-size: 15;
+    color: white;
+}
+
+.row{
+    display: flex;
+	background-color: rgba(0,0,0,0.3);
+}
+
+button{
+    background: transparent;
+    border: 0;
+    color: white;
+    text-shadow: 1px 1px #000000;
+}
+
+.check{
+    width:50px;
+    flex-grow: 0;
+    display:inline-block;
+}
+
+.text{
+    min-width:100px;
+    flex-grow: 1;
+}
+
+.cross{
+    cursor: default;
+    width: 50px;
+    flex-grow: 0;
+    display:inline-block;
+}
+
+button:hover{
+    color: red;
+}
+
+#block{
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 300px;
+	height: 160px;
+    padding: 25px;
+    margin: 10px;
+    overflow: auto;
+    display: block;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
 }
 
 #greeting{
     color: rgba( 255, 255, 255, 1 );
-    font-family: 'EB Garamond', serif;'EB Garamond', serif;
+    font-family: 'EB Garamond', serif;
     font-size: 90px;
 }
 

@@ -32,6 +32,29 @@ chrome.identity.getAuthToken({
         var greet = "Hello, "+obj.given_name+"!";
         document.getElementById('greeting').innerHTML= greet;
         updateClock();
+        $('input[name=task]').on('keypress', function(event) {
+        if (event.keyCode == 13) {
+            var toAdd = $('input[name=task]').val();
+            $item = $("<div class='row'><div class='tick'><input type='checkbox' class='check'> </div><div class='text'> "+ toAdd + "</div> <div class='cross'> <button>&times;</button> </div></div>");
+			$("#todo").append($item);
+			$('input[name=task]').val("");
+        }
+    });
+        $('#block').on("click","div.cross",function(){
+		$(this).parent().closest("div").remove();
+	});
+        $('#block').on("click","div.tick",function(){
+		console.log($('#check').prop('checked'));
+		if($('.check').prop('checked') === true) {
+			var tr = $(this).parent().closest('div');
+			tr.detach().appendTo($('#done'));
+		}
+		else if($('.check').prop('checked') === false){
+			var tr = $(this).parent().closest('div');
+			tr.detach().appendTo($('#todo'));
+		}
+	});
     };
     x.send();
 });
+
