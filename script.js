@@ -1,20 +1,12 @@
-// chrome.identity.getProfileUserInfo(function(userInfo){ 
-// 	console.log(userInfo); //console.log(userInfo.id); 
-// });
-
 function updateClock() {
     var now = new Date(); // current date
     months = ['January', 'February', 'March','April','May','June','July','August','September','October','November','December']; // you get the idea
-    time = now.getHours() + ':' + (now.getMinutes()<10?'0':'') + now.getMinutes() ; // again, you get the idea
-    // a cleaner way than string concatenation
+    time = now.getHours() + ':' + (now.getMinutes()<10?'0':'') + now.getMinutes() ;
     date = [now.getDate(), 
                 months[now.getMonth()].substring(0,3),
                 now.getFullYear()].join(' ');
-
-    // set the content of the element with the ID time to the formatted string
     document.getElementById('time').innerHTML = time;
     document.getElementById('date').innerHTML = date;
-    // call this function again in 1000ms
     setTimeout(updateClock, 1000);
 }
 
@@ -37,24 +29,53 @@ chrome.identity.getAuthToken({
             var toAdd = $('input[name=task]').val();
             $item = $("<div class='row'><div class='tick'><input type='checkbox' class='check'> </div><div class='text'> "+ toAdd + "</div> <div class='cross'> <button>&times;</button> </div></div>");
 			$("#todo").append($item);
+            setdata();
 			$('input[name=task]').val("");
         }
     });
         $('#block').on("click","div.cross",function(){
 		$(this).parent().closest("div").remove();
+        setdata();
 	});
         $('#block').on("click","div.tick",function(){
-		console.log($('#check').prop('checked'));
-		if($('.check').prop('checked') === true) {
+		if($(this).find('.check').prop('checked') === true) {
 			var tr = $(this).parent().closest('div');
 			tr.detach().appendTo($('#done'));
+            setdata();
 		}
-		else if($('.check').prop('checked') === false){
+		else{
 			var tr = $(this).parent().closest('div');
 			tr.detach().appendTo($('#todo'));
+            setdata();
 		}
 	});
+        readdata(print);
     };
     x.send();
 });
 
+
+function readdata(callback){
+    chrome.storage.sync.get("data", function(result) {
+        if(result.data) {
+            console.log(result);
+            callback(result);
+        }
+    });
+}
+
+function print(tasks){
+    $('#todo').append(tasks.data.todo);
+    $('#done').append(tasks.data.done);
+    $('#done input').prop('checked',true);
+}
+
+function setdata(){
+    var todo = $('#todo').html();
+    var done = $('#done').html();
+    chrome.storage.sync.set({ "data" : {"todo": todo, "done" : done} }, function() {
+    if (chrome.runtime.error) {
+      console.log("Runtime error.");
+    }
+  });
+}

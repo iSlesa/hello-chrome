@@ -4,6 +4,7 @@
   "description": "Let chrome greet you",
   "version": "1.0",
   "permissions": [
+    "storage",
     "activeTab",
     "identity"
   ],
